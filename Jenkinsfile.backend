@@ -7,7 +7,7 @@ pipeline{
         PRODUCTION_IP='52.71.60.192'
     }
 
-    stages('Backend PipeLine'){
+    stages{
 
             stage('Build Docker Image'){
                 steps{
@@ -31,15 +31,14 @@ pipeline{
                     sudo docker tag electronix-backend:${BUILD_NUMBER} ${ECR_REPO}:${BUILD_NUMBER}
                     sudo docker tag electronix-backend:${ECR_REPO}:latest
                     sudo docker push ${ECR_REPO}:${BUILD_NUMBER}
-                    suod docker push ${ECR_REPO}:latest
+                    sudo docker push ${ECR_REPO}:latest
 
                     echo "Pushed Success ✅"
                     '''
                 }
             }
-        }
-
 }
+
 
   post {
     success{
